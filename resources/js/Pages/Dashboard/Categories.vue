@@ -15,6 +15,12 @@
                     </div>
                 </div>
 
+                <div role="alert" v-else-if="$page.props.flash.error">
+                    <div class="border rounded border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+                        <p>{{ $page.props.flash.error }}</p>
+                    </div>
+                </div>
+
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

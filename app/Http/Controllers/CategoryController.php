@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class CategoryController extends Controller
 {
-    public function index()
-    {
+    public function index(){
          return Inertia::render('Dashboard/Categories', ['categories' => Category::all(), 'message' => 'Usuário cadastrado com sucesso']);
     }
 
@@ -38,20 +36,20 @@ class CategoryController extends Controller
 
     public function edit($id){
 
-        $category = Category::find($id);
-
-        return Inertia::render('Dashboard/EditCategory', ['category' => $category]);
+        return Inertia::render('Dashboard/EditCategory', ['category' => Category::find($id)]);
     }
 
     public function update(Request $request, $id){
 
         $is_valid = Category::where('id', $id)->first();
         if(!$is_valid) {
-            return Inertia::render('Dashboard/EditCategory', ['errors.category_name' => 'Categoria Inválida!']);
+            return redirect()->route('category.index')
+            ->with("error", 'Categoria inválida!!!');
         }
 
         if(!$request['category_name']){
-            return Inertia::render('Dashboard/EditCategory', ['errors.category_name' => 'Campo obrigatório!']);
+            return redirect()->route('category.update.show', $id)
+            ->with("error", 'Campo obrigatório!!!');
         }
 
         $category = Category::find($id);
@@ -66,7 +64,8 @@ class CategoryController extends Controller
     public function destroy($id){
         $is_valid = Category::where('id', $id)->first();
         if(!$is_valid) {
-            return Inertia::render('Dashboard/Categories', ['message' => 'Categoria Inválida!']);
+            return redirect()->route('category.index')
+            ->with("error", 'Categoria inválida!!!');
         }
         $is_valid->delete();
         return redirect()->route('category.index')
