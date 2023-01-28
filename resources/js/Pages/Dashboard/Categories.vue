@@ -8,13 +8,13 @@
                     Criar nova categoria
                 </Link>
             </div>
-            <!-- <div v-if="message">
-                <div role="alert"> 
+
+                <div role="alert" v-if="$page.props.flash.success">
                     <div class="border rounded border-green-400 rounded-b bg-green-100 px-4 py-3 text-green-700">
-                        <p>{{ message }}</p>
+                        <p>{{ $page.props.flash.success }}</p>
                     </div>
                 </div>
-            </div> -->
+
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -35,7 +35,7 @@
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ item.category_name }}
                             </td>
-            
+
                             <td class="flex px-6 py-4">
                                 <div class="mr-4">
                                     <Link :href="route('category.update.show', item.id )" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
@@ -49,8 +49,8 @@
                                         </button>
                                     </form>
                                 </div>
-                                
-                               
+
+
                             </td>
 
                         </tr>
@@ -69,7 +69,6 @@ import {PhPencilLine, PhTrash} from 'phosphor-vue'
 import SidebarMenu from './partials/SidebarMenu.vue';
     const props = defineProps({
         categories: Object,
-        message: String
     })
 
     const form = useForm({})

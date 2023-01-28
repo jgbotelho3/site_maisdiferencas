@@ -21,14 +21,18 @@ class CategoryController extends Controller
     public function store(Request $request){
 
         if(!$request['category_name']){
-            return Inertia::render('Dashboard/NewCategory', ['errors.category_name' => 'Campo obrigatório']);
+
+            return redirect()->route('category.create')
+            ->with("error", 'Campo obrigatório');
+
         }
 
         Category::create($request->validate([
             'category_name' => ['required', 'max:20']
         ]));
 
-        return to_route('category.index');
+        return redirect()->route('category.index')
+        ->with("success", 'Categoria cadastrada com sucesso!!!');
 
     }
 
@@ -55,7 +59,8 @@ class CategoryController extends Controller
         $category->category_name = $request['category_name'];
         $category->save();
 
-        return to_route('category.index');
+        return redirect()->route('category.index')
+        ->with("success", 'Categoria editada com sucesso!!!');
     }
 
     public function destroy($id){
@@ -64,7 +69,9 @@ class CategoryController extends Controller
             return Inertia::render('Dashboard/Categories', ['message' => 'Categoria Inválida!']);
         }
         $is_valid->delete();
-        return to_route('category.index');
+        return redirect()->route('category.index')
+        ->with("success", 'Categoria Excluída com sucesso!!!');
+
     }
 
 }
