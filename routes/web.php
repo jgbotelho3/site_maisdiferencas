@@ -25,8 +25,9 @@ Route::prefix('dashboard')->group(function (){
     Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/categories/new', [CategoryController::class, 'create'])->name('category.create');
     Route::post('/categories/new', [CategoryController::class, 'store'])->name('category.store');
-    Route::get('/categories/edit/{id}', [CategoryController::class, 'edit'])->name('category.update.show');
-    Route::put('/categories/edit/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('category.update.show');
+    Route::put('/categories/{id}/edit', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('category.destroy');
 });
 
 // Route::get('/dashboard', function () {

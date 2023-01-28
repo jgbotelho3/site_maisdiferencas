@@ -19,7 +19,6 @@
 
 
 <script setup>
-// import { reactive } from 'vue';
 import { useForm } from '@inertiajs/vue3'
 import SidebarMenu from './partials/SidebarMenu.vue';
     
