@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -22,12 +23,17 @@ Route::prefix('dashboard')->group(function (){
         return Inertia::render('Dashboard/Users');
     });
 
+    // Category routes
     Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/categories/new', [CategoryController::class, 'create'])->name('category.create');
     Route::post('/categories/new', [CategoryController::class, 'store'])->name('category.store');
     Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('category.update.show');
     Route::put('/categories/{id}/edit', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/categories/{id}/delete', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+    //Project routes
+
+    Route::get('/projects', [ProjectController::class, 'index'])->name('project.index');
 });
 
 // Route::get('/dashboard', function () {

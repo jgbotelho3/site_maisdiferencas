@@ -12,7 +12,7 @@ import {PhList, PhHouse, PhUsers, PhSliders, PhProjectorScreen, PhCaretDown, PhC
 </script>
 
 <template>
-    
+
 
         <!--Mobile Menu-->
         <div class="bg-gray-800 text-gray-100 flex justify-between md:hidden">
@@ -53,7 +53,7 @@ import {PhList, PhHouse, PhUsers, PhSliders, PhProjectorScreen, PhCaretDown, PhC
                         </button>
                         <ul v-bind:class="[showProjectsDropdown ? '' : 'hidden']">
                             <li>
-                                <Link href="#" class="flex py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
+                                <Link :href="route('project.index')" class="flex py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
                                     <span class="flex pb-1 pl-2 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200">Gerenciar projetos</span>
                                 </Link>
                             </li>
