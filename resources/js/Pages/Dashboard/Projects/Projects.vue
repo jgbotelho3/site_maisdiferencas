@@ -4,8 +4,8 @@
         <section class="flex-1 p-10 text-xl font-bold">
             <div class="mb-9 flex justify-between">
                 <h1 class="">Projetos</h1>
-                <Link :href="route('category.create')" class="bg-teal-500 hover:bg-teal-700 text-white text-lg font-bold py-2 px-4 rounded">
-                    Criar novo projeto
+                <Link :href="route('project.create')" class="bg-teal-500 hover:bg-teal-700 text-white text-lg font-bold py-2 px-4 rounded">
+                    Criar projeto
                 </Link>
             </div>
 
@@ -27,7 +27,15 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
+                            ID
+                            </th>
+
+                            <th scope="col" class="px-6 py-3">
                             Nome do Projeto
+                            </th>
+
+                            <th scope="col" class="px-6 py-3">
+                            Categoria
                             </th>
 
                             <th scope="col" class="px-6 py-3">
@@ -39,7 +47,15 @@
                         <tr v-for="item in projects" :key="item.name"  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
 
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ item.id }}
+                            </td>
+
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ item.name }}
+                            </td>
+
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ item.category_name }}
                             </td>
 
                             <td class="flex px-6 py-4">

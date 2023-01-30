@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class ProjectController extends Controller
@@ -15,8 +16,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        $projects = Project::select('projects.*', 'categories.category_name as category_name')
+        	->join('categories', 'categories.id', '=', 'projects.category_id')
+        	->get();
 
-        return Inertia::render('Dashboard/Projects/Projects', ['projects' => Project::all()]);
+        return Inertia::render('Dashboard/Projects/Projects', ['projects' => $projects]);
     }
 
     /**
@@ -26,7 +30,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Dashboard/Projects/NewProject');
     }
 
     /**

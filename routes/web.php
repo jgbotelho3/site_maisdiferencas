@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Project;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,6 +35,7 @@ Route::prefix('dashboard')->group(function (){
     //Project routes
 
     Route::get('/projects', [ProjectController::class, 'index'])->name('project.index');
+    Route::get('/projects/new', [ProjectController::class, 'create'])->name('project.create');
 });
 
 // Route::get('/dashboard', function () {
