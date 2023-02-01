@@ -25,7 +25,7 @@ class AxisController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Dashboard/Axis/NewAxis');
     }
 
     /**
@@ -36,7 +36,19 @@ class AxisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!$request['word']){
+
+            return redirect()->route('axis.create')
+            ->with("error", 'Campo obrigatório');
+
+        }
+
+        Axis::create($request->validate([
+            'word' => ['required', 'max:100']
+        ]));
+
+        return redirect()->route('axis.index')
+        ->with("success", 'Eixo de trabalho cadastrado com sucesso!!!');
     }
 
     /**
@@ -45,21 +57,11 @@ class AxisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        return Inertia::render('Dashboard/Axis/EditAxis', ['axis' => Axis::find($id)]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -68,9 +70,25 @@ class AxisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+        $is_valid = Axis::where('id', $id)->first();
+        if(!$is_valid) {
+            return redirect()->route('axis.index')
+            ->with("error", 'Eixo de trabalho inválido!!!');
+        }
+
+        if(!$request['word']){
+            return redirect()->route('axis.update.show', $id)
+            ->with("error", 'Campo obrigatório!!!');
+        }
+
+        $eixo = Axis::find($id);
+
+        $eixo->word = $request['word'];
+        $eixo->save();
+
+        return redirect()->route('axis.index')
+        ->with("success", 'Eixo de Trabalho editado com sucesso!!!');
     }
 
     /**
@@ -81,6 +99,13 @@ class AxisController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $is_valid = Axis::where('id', $id)->first();
+        if(!$is_valid) {
+            return redirect()->route('axis.index')
+            ->with("error", 'Eixo de trabalho inválido!!!');
+        }
+        $is_valid->delete();
+        return redirect()->route('axis.index')
+        ->with("success", 'Eixo de trabalho excluído com sucesso!!!');
     }
 }

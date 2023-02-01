@@ -4,6 +4,7 @@ use App\Http\Controllers\AxisController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Axis;
 use App\Models\Project;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,11 @@ Route::prefix('dashboard')->group(function (){
     //Axis routes
 
     Route::get('/axis', [AxisController::class, 'index'])->name('axis.index');
+    Route::get('/axis/new', [AxisController::class, 'create'])->name('axis.create');
+    Route::post('/axis/new', [AxisController::class, 'store'])->name('axis.store');
+    Route::get('/axis/{id}/edit', [AxisController::class, 'edit'])->name('axis.update.show');
+    Route::put('/axis/{id}/edit', [AxisController::class, 'update'])->name('axis.update');
+    Route::delete('axis/{id}/delete', [AxisController::class, 'destroy'])->name('axis.destroy');
 });
 
 // Route::get('/dashboard', function () {

@@ -4,7 +4,7 @@
         <section class="flex-1 p-10 text-xl font-bold">
             <div class="mb-9 flex justify-between">
                 <h1 class="">Eixos de trabalho</h1>
-                <Link :href="route('project.create')" class="bg-teal-500 hover:bg-teal-700 text-white text-lg font-bold py-2 px-4 rounded">
+                <Link :href="route('axis.create')" class="bg-teal-500 hover:bg-teal-700 text-white text-lg font-bold py-2 px-4 rounded">
                     Criar novo eixo
                 </Link>
             </div>
@@ -52,7 +52,7 @@
 
                             <td class="flex px-6 py-4">
                                 <div class="mr-4">
-                                    <Link :href="route('category.update.show', item.id )" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    <Link :href="route('axis.update.show', item.id )" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                         <ph-pencil-line :size="24" color="#000" />
                                     </Link>
                                 </div>
@@ -88,11 +88,11 @@ import SidebarMenu from '../partials/SidebarMenu.vue';
     const form = useForm({})
 
 
-    // function handleSubmitDelete(item){
-    //     if(confirm('Tem certeza que deseja excluir essa categoria?')){
+    function handleSubmitDelete(item){
+        if(confirm('Tem certeza que deseja excluir esse eixo de trabalho?')){
 
-    //         form.delete(route('category.destroy', item))
-    //     }
-    // }
+            form.delete(route('axis.destroy', item))
+        }
+    }
 
 </script>
