@@ -72,6 +72,11 @@ import {PhList, PhHouse, PhUsers, PhSliders, PhProjectorScreen, PhCaretDown, PhC
                                     <span class="flex pb-1 pl-2 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200">Categorias</span>
                                 </Link>
                             </li>
+                            <li>
+                                <Link href="/dashboard/axis" class="flex py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
+                                    <span class="flex pb-1 pl-2 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200">Eixos de trabalho</span>
+                                </Link>
+                            </li>
                         </ul>
                     </li>
                 </ul>

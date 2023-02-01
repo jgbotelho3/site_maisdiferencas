@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AxisController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProfileController;
@@ -36,6 +37,10 @@ Route::prefix('dashboard')->group(function (){
 
     Route::get('/projects', [ProjectController::class, 'index'])->name('project.index');
     Route::get('/projects/new', [ProjectController::class, 'create'])->name('project.create');
+
+    //Axis routes
+
+    Route::get('/axis', [AxisController::class, 'index'])->name('axis.index');
 });
 
 // Route::get('/dashboard', function () {

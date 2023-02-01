@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +23,23 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        \App\Models\Project::factory(10)->create();
+        // \App\Models\Project::factory(10)->create();
+
+            \App\Models\Axis::factory()
+                                ->count(7)
+                                ->sequence(
+                                        ['word' => 'Formação'],
+                                        ['word' => 'Pesquisa e experimentação'],
+                                        ['word' => 'Monitoramento e avaliação'],
+                                        ['word' => 'Assessoria à gestão'],
+                                        ['word' => 'Acessibilidade'],
+                                        ['word' => 'Comunicação'],
+                                        ['word' => 'Práticas pedagógicas']  
+                                )           
+                                ->create();
+     
+            
+        
+        
     }
 }
