@@ -4,7 +4,6 @@ use App\Http\Controllers\AxisController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Axis;
 use App\Models\Project;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +18,7 @@ Route::get('/', function () {
 
 Route::prefix('dashboard')->group(function (){
     Route::get('/', function(){
-        return Inertia::render('Dashboard/Home');
+        return Inertia::render('Dashboard/Home', ['projects_count' => count(Project::all())]);
     });
 
     Route::get('/users', function(){
@@ -39,7 +38,7 @@ Route::prefix('dashboard')->group(function (){
     Route::get('/projects', [ProjectController::class, 'index'])->name('project.index');
     Route::get('/projects/new', [ProjectController::class, 'create'])->name('project.create');
 
-    //Axis routes
+    //Eixo de trabalho routes
 
     Route::get('/axis', [AxisController::class, 'index'])->name('axis.index');
     Route::get('/axis/new', [AxisController::class, 'create'])->name('axis.create');
