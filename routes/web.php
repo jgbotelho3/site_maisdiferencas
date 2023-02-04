@@ -37,6 +37,7 @@ Route::prefix('dashboard')->group(function (){
 
     Route::get('/projects', [ProjectController::class, 'index'])->name('project.index');
     Route::get('/projects/new', [ProjectController::class, 'create'])->name('project.create');
+    Route::post('/projects/new', [ProjectController::class, 'store'])->name('project.store');
 
     //Eixo de trabalho routes
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -30,7 +31,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Dashboard/Projects/NewProject');
+        return Inertia::render('Dashboard/Projects/NewProject', ['categories' => Category::all()]);
     }
 
     /**
@@ -41,7 +42,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         dd($request->all());
     }
 
     /**
