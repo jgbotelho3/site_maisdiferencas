@@ -41,7 +41,7 @@ import {PhList, PhHouse, PhUsers, PhSliders, PhProjectorScreen, PhCaretDown, PhC
                         </button>
                         <ul v-bind:class="[showUserDropdown ? '' : 'hidden']">
                             <li>
-                                <Link href="/dashboard/users" class="flex py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
+                                <Link :href="route('user.index')" class="flex py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
                                     <span class="flex pb-1 pl-2 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200">Gerenciar usuários</span>
                                 </Link>
                             </li>

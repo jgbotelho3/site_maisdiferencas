@@ -8,6 +8,11 @@ use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
          return Inertia::render('Dashboard/Categories', ['categories' => Category::all(), 'message' => 'Usuário cadastrado com sucesso']);
     }

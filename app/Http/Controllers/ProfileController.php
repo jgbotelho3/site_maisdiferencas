@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,6 +14,25 @@ use Inertia\Response;
 
 class ProfileController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+    public function index(){
+        if(Auth::user()->role === 'admin'){
+
+            return Inertia::render('Dashboard/Users/Users', ['users' => User::all()]);
+        }
+
+            return Inertia::render('Dashboard/Permission/NoPermission', ["error" => 'Você não tem permissão para acessar essa tela']);
+
+    }
+
+    public function create(){
+        return Inertia::render('Dashboard/Users/NewUser');
+    }
+
     /**
      * Display the user's profile form.
      */
@@ -59,5 +79,9 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function logout(){
+        return Auth::logout();
     }
 }

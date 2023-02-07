@@ -19,11 +19,16 @@ Route::get('/', function () {
 Route::prefix('dashboard')->group(function (){
     Route::get('/', function(){
         return Inertia::render('Dashboard/Home', ['projects_count' => count(Project::all())]);
-    });
+    })->middleware('auth');
 
     Route::get('/users', function(){
         return Inertia::render('Dashboard/Users');
     });
+
+    //Profile Routes
+
+    Route::get('/profiles', [ProfileController::class, 'index'])->name('user.index');
+    Route::get('/profile/new', [ProfileController::class, 'create'])->name('user.create');
 
     // Category routes
     Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
@@ -53,11 +58,11 @@ Route::prefix('dashboard')->group(function (){
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 require __DIR__.'/auth.php';
 // require __DIR__.'/category.php';
