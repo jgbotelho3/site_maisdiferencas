@@ -45,6 +45,10 @@
                             </th>
 
                             <th scope="col" class="px-6 py-3">
+                            Perfil
+                            </th>
+
+                            <th scope="col" class="px-6 py-3">
                                 Ações
                             </th>
                         </tr>
@@ -57,6 +61,10 @@
                             </td>
                             <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ item.email }}
+                            </td>
+
+                            <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ item.role }}
                             </td>
 
                             <td class="flex px-6 py-4">
