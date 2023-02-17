@@ -19,6 +19,7 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "@tinymce/tinymce-vue": "^5.0.0",
         "phosphor-vue": "^4.4.0"
     }
 }
